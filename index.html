@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="classes/projectile.js"></script>
+    <script src="classes/tower.js"></script>
+    <script src="classes/tile.js"></script>
+    <script src="classes/enemy.js"></script>
+    <script src="classes/game.js"></script>
+    <script src="classes/main.js"></script>
+    <title>JAJS-Game</title>
+    <style>
+        canvas {
+            position: absolute;
+        }
+
+        button {
+            position: absolute;
+            top: 91%;
+        }
+        p {
+            position: absolute;
+            left: 700px;
+        }
+
+        .shop {
+            top: 71% !important;
+
+        }
+
+        .shop img {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body style=" background: lightblue;" onload="createGame();">
+
+    <img src="images/tower/rocket_1.png" style="display: none">
+    <img src="images/tower/rocket_1_empty.png" style="display: none">
+    <img src="images/tower/rocket_2.png" style="display: none">
+    <img src="images/tower/rocket_2_empty.png" style="display: none">
+    <img src="images/tower/small_rocket.png" style="display: none">
+    <img src="images/tower/fat_rocket.png" style="display: none">
+
+    <img src="images/enemys/burning.png" style="display:none;">
+    <img src="images/enemys/enemy_1.png" style="display: none">
+    <img src="images/enemys/enemy_2.png" style="display: none">
+    <img src="images/sand_tile.png" style="display: none">
+    <img src="images/grass_tile_0.png" style="display: none">
+    <img src="images/grass_tile_1.png" style="display: none">
+    <img src="images/grass_tile_2.png" style="display: none">
+    <canvas id="canvas" width="670px" height="670px" style="background: #fff; z-index: 1;"></canvas>
+    <canvas id="bulletLayer" width="670px" height="670px" style="z-index: 4;"></canvas>
+    <canvas id="towerLayer" width="670px" height="670px" style="z-index: 3;"></canvas>
+    <canvas id="movementLayer" width="670px" height="670px" style="z-index: 2;"></canvas>
+    <button class="shop" style="margin-left: 10px;" onclick="game.selection = 1;"><img src="images/tower/rocket_1.png"></button>
+    <button class="shop" style="margin-left: 110px;" onclick="game.selection = 2"><img src="images/tower/rocket_2.png"></button>
+    <button class="shop" style="margin-left: 210px;" onclick="game.selection = 3"><img src="images/tower/machine_gun_1.png"></button>
+    <button class="shop" style="margin-left: 310px;" onclick="game.selection = 4"><img src="images/tower/machine_gun_2.png"></button>
+
+    <button style="margin-left: 110px;" onclick="enableCreatorMode();">Creator mode</button>
+    <button style="margin-left: 210px;" onclick="game.getPathTiles();">Get path tiles</button>
+    <button style="margin-left: 310px;" onclick="game.spawnEnemys();">Spawn enemy</button>
+    <button onclick="game.loadPathTiles();">Load path tiles</button>
+    <textarea id="pathTilesText" placeholder="jsonpath"></textarea>
+    <p id="health">Health: 0</p>
+    <p style="margin-top: 35px;" id="coins">Coins: 0</p>
+    <p style="margin-top: 55px;" id="enemysLeft">Enemys left: 0</p>
+    <p style="margin-top: 75px;" id="enemysKilled">Enemys killed: 0</p>
+    <p style="margin-top: 95px;" id="enemysInRound">Enemys this round: 0</p>
+    <p style="margin-top: 115px;" id="fpsCounter">Current FPS: 0</p>
+</body>
+</html>
