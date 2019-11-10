@@ -10,6 +10,8 @@ class Tile {
         this.clicked = false;
 
         this.isPath = false;
+        this.isWater = false;
+
         this.onTile = [];
 
         this.image = new Image();
@@ -45,7 +47,7 @@ class Tile {
             return;
         }
 
-        var tower = null;
+        let tower = null;
         switch(game.selection) {
             case 1:
                 tower = new Tower(this.x, this.y);
@@ -74,7 +76,7 @@ class Tile {
 }
 
 function getTileFromPos(x,y) {
-    for(var tile in game.tiles) {
+    for(let tile in game.tiles) {
         if(game.tiles[tile].x == x && game.tiles[tile].y == y)
         {
             return game.tiles[tile];
@@ -83,7 +85,7 @@ function getTileFromPos(x,y) {
 }
 
 function getPathTileFromPos(x,y) {
-    for(var tile in game.pathTiles) {
+    for(let tile in game.pathTiles) {
         if(game.pathTiles[tile].x == x && game.pathTiles[tile].y == y)
         {
             return game.pathTiles[tile];

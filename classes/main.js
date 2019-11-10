@@ -1,7 +1,7 @@
-var game = null;
+let game = null;
 
 function createGame() {
-    var canvas = document.getElementById("canvas");
+    let canvas = document.getElementById("canvas");
     ctx = canvas.getContext("2d");
     
     game = new Game(ctx);

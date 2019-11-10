@@ -29,7 +29,7 @@ class Tower {
     }
 
     inRadius() {
-        for(var enemy in game.enemys) {
+        for(let enemy in game.enemys) {
             if(!((this.y + this.h + this.radius) < game.enemys[enemy].y || this.y - this.radius > (game.enemys[enemy].y + game.enemys[enemy].h) ||
                  (this.x + this.w + this.radius) < game.enemys[enemy].x || this.x - this.radius > (game.enemys[enemy].x + game.enemys[enemy].w)))
             {
@@ -46,7 +46,7 @@ class Tower {
             }
         }
 
-        for(var enemy in this.inArea)
+        for(let enemy in this.inArea)
         {
             if(this.inArea[enemy].dead) {
                 this.inArea.splice(this.inArea.indexOf(this.inArea[enemy]), 1);
@@ -74,16 +74,13 @@ class Tower {
     updateDest() {
         this.inRadius();
 
-        if(this.inArea[0] == undefined) {
-            this.destination = [0,0];
-        }
-        else {
+        if(this.inArea[0] != undefined) {
             this.destination = [this.inArea[0].x, this.inArea[0].y];
         }
 
-        var deltaX = this.destination[0] - this.x;
-        var deltaY = this.destination[1] - this.y;
-        var rad = Math.atan2(deltaY, deltaX);
+        let deltaX = this.destination[0] - this.x;
+        let deltaY = this.destination[1] - this.y;
+        let rad = Math.atan2(deltaY, deltaX);
 
         this.ctx.save();
         this.ctx.translate(this.x + 42/2, this.y + 42/2);
@@ -97,7 +94,7 @@ class Tower {
             return;
         }
 
-        var bullet = new FatRocket(this.x, this.y, this.inArea[0], 1);
+        let bullet = new FatRocket(this.x, this.y, this.inArea[0], 1);
         game.projectiles.push(bullet);
 
         this.image = this.reloadImage;
@@ -132,7 +129,7 @@ class DoubleTower extends Tower {
             return;
         }
         
-        var bullet = new SmallRocket(this.x, this.y, this.inArea[0], 1);
+        let bullet = new SmallRocket(this.x, this.y, this.inArea[0], 1);
         game.projectiles.push(bullet);
         this.shots++;
 
@@ -169,7 +166,7 @@ class MachineTower extends Tower {
             return;
         }
         
-        var bullet = new Bullet(this.x, this.y, this.inArea[0], 1);
+        let bullet = new Bullet(this.x, this.y, this.inArea[0], 1);
         game.projectiles.push(bullet);
     }
 }
@@ -197,7 +194,7 @@ class DoubleMachineTower extends Tower {
             return;
         }
         
-        var bullet = new Bullet(this.x, this.y, this.inArea[0], 1);
+        let bullet = new Bullet(this.x, this.y, this.inArea[0], 1);
         game.projectiles.push(bullet);
     }
 }

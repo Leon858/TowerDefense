@@ -62,9 +62,9 @@ class Projectile {
             return;
         }
         
-        var deltaX = this.destination[0] - this.x;
-        var deltaY = this.destination[1] - this.y;
-        var rad = Math.atan2(deltaY, deltaX);
+        let deltaX = this.destination[0] - this.x;
+        let deltaY = this.destination[1] - this.y;
+        let rad = Math.atan2(deltaY, deltaX);
         
         this.ctx.save();
         this.ctx.translate(this.x + 42/2, this.y + 42/2);

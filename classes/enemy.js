@@ -9,7 +9,8 @@ class Enemy {
 
         this.currentPos = 0;
 
-        this.health = 5 + game.roundsAlive;
+        this.health = 7 + game.roundsAlive;
+        this.reward = 10;
 
         this.ctx = document.getElementById("movementLayer").getContext("2d");
         this.dead = false;
@@ -66,7 +67,7 @@ class Enemy {
         }
         
         game.enemysKilled++;
-        game.coins += 25;
+        game.coins += this.reward;
         game.enemys.splice(game.enemys.indexOf(this),1);
     }
 
@@ -81,7 +82,7 @@ class Enemy {
             return;
         }
 
-        var b = this.currentPos == 0 ? 0 : this.currentPos - 1;
+        let b = this.currentPos == 0 ? 0 : this.currentPos - 1;
 
         game.pathTiles[this.currentPos].onTile.push(this);
 
@@ -109,7 +110,8 @@ class Enemy {
 class HarderEnemy extends Enemy {
     constructor() {
         super();
-        this.health = 20 + game.roundsAlive;
+        this.health = 25 + game.roundsAlive;
+        this.reward = 25;
         this.image.src = "images/enemys/enemy_2.png";
     }
 }

@@ -32,9 +32,9 @@ class Game {
     drawGrid() {
         this.tiles = [];
         ctx.clearRect(0,0, canvas.width, canvas.height);    
-        for (var x = 6, i = 0; i < Math.floor(canvas.width/44); x+=44, i++) {
-            for (var y = 6, j= 0; j < Math.floor(canvas.height/44); y+=44, j++) {
-                var tile = new Tile(x, y, 40, 40, ctx);
+        for (let x = 6, i = 0; i < Math.floor(canvas.width/44); x+=44, i++) {
+            for (let y = 6, j= 0; j < Math.floor(canvas.height/44); y+=44, j++) {
+                let tile = new Tile(x, y, 40, 40, ctx);
                 tile.draw();
                 this.tiles.push(tile);
             }
@@ -59,10 +59,10 @@ class Game {
     }
 
     loadPathTiles() {
-        var jsonString = document.getElementById("pathTilesText").value;
-        var jsonArray = JSON.parse(this.jsonPath);
-        for(var tile in jsonArray) {
-            var t = new PathTile(jsonArray[tile].number, jsonArray[tile].x, jsonArray[tile].y, this.ctx);
+        let jsonString = document.getElementById("pathTilesText").value;
+        let jsonArray = JSON.parse(this.jsonPath);
+        for(let tile in jsonArray) {
+            let t = new PathTile(jsonArray[tile].number, jsonArray[tile].x, jsonArray[tile].y, this.ctx);
             getTileFromPos(t.x,t.y).destroy();
             t.draw();
             this.pathTiles.push(t);
@@ -82,7 +82,7 @@ class Game {
             }
             return;
         }
-        var enemy = null;
+        let enemy = null;
         if(this.roundsAlive >= 2) {
             switch(Math.floor(Math.random() * 2))
             {
@@ -112,7 +112,7 @@ class Game {
             requestAnimationFrame(this.think.bind(this));
             return;
         }
-        var delta = (performance.now() - this.frameLastTime) / 1000;
+        let delta = (performance.now() - this.frameLastTime) / 1000;
         this.frameLastTime = performance.now();
         this.fps = 1 / delta;
 
@@ -131,19 +131,19 @@ class Game {
         document.getElementById("bulletLayer").getContext("2d").clearRect(0,0,670, 670);
         document.getElementById("towerLayer").getContext("2d").clearRect(0,0,670, 670);
 
-        for(var enemy in this.enemys) {
+        for(let enemy in this.enemys) {
             this.enemys[enemy].move();
         }
 
         if(this.projectiles) {
-            for(var bullet in this.projectiles){
+            for(let bullet in this.projectiles){
                 this.projectiles[bullet].gravity();
             }
         }
 
         if(this.towers)
         {
-            for(var tower in this.towers) {
+            for(let tower in this.towers) {
                 this.towers[tower].updateDest();
             }
         }
