@@ -1,5 +1,5 @@
 class Enemy {
-    constructor()
+    constructor(currentPos = 0)
     {
         this.x = 0;
         this.y = 0;
@@ -7,9 +7,9 @@ class Enemy {
         this.w = 40;
         this.h = 40;
 
-        this.currentPos = 0;
+        this.currentPos = currentPos;
 
-        this.health = 7 + game.roundsAlive;
+        this.health = 3 * (game.roundsAlive == 0 ? 1 : game.roundsAlive);
         this.reward = 10;
 
         this.ctx = document.getElementById("movementLayer").getContext("2d");
@@ -51,13 +51,7 @@ class Enemy {
 
     }
 
-    damage(dmg) {
-        this.health -= dmg;
-
-        if(this.health > 0){
-            return; 
-        }
-
+    onDeath() {
         this.dead = true;
         
         clearInterval(this.updatePos);
@@ -69,6 +63,16 @@ class Enemy {
         game.enemysKilled++;
         game.coins += this.reward;
         game.enemys.splice(game.enemys.indexOf(this),1);
+    }
+
+    damage(dmg) {
+        this.health -= dmg;
+
+        if(this.health > 0){
+            return; 
+        }
+
+        this.onDeath();
     }
 
     updatePos() {
@@ -108,10 +112,23 @@ class Enemy {
 }
 
 class HarderEnemy extends Enemy {
-    constructor() {
-        super();
-        this.health = 25 + game.roundsAlive;
+    constructor(currentPos = 0) {
+        super(currentPos);
+        this.health = 7 * game.roundsAlive;
+        this.finishDamage = 5;
         this.reward = 25;
         this.image.src = "images/enemys/enemy_2.png";
+    }
+
+    onDeath() {
+
+        for(let i = 0; i < 4; i++) {
+            var e = new Enemy(this.currentPos);
+            e.spawn();
+        
+            game.enemys.push(e);
+        }
+
+        super.onDeath();
     }
 }

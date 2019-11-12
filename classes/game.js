@@ -22,7 +22,7 @@ class Game {
 
         this.roundsAlive = 0;
 
-        this.coins = 300;
+        this.coins = 550;
 
         this.creator = false;
         document.getElementById("enemysInRound").innerHTML = "Enemys this round: " + this.enemysRound;
