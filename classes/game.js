@@ -15,7 +15,7 @@ class Game {
 
         this.enemys = [];
         this.enemysLeft = 0;
-        this.enemysRound = 15;
+        this.enemysRound = 13;
         this.enemysSpawned = 0;
         this.enemysKilled = 0;
         this.enemySpawner = undefined;
@@ -25,8 +25,8 @@ class Game {
         this.coins = 550;
 
         this.creator = false;
-        document.getElementById("enemysInRound").innerHTML = "Enemys this round: " + this.enemysRound;
-        document.getElementById("enemysLeft").innerHTML = "Enemys left: " + (this.enemysRound - this.enemysKilled);
+        $("#enemysInRound").html("Enemys this round: " + this.enemysRound);
+        $("#enemysLeft").html("Enemys left: " + (this.enemysRound - this.enemysKilled));
     }
 
     drawGrid() {
@@ -47,7 +47,7 @@ class Game {
         this.enemysSpawned = 0;
         this.enemysKilled = 0;
 
-        this.enemySpawner = setInterval(this.spawnEnemys.bind(this), 1000); 
+        this.enemySpawner = setInterval(this.spawnEnemys.bind(this), 1000); // TODO: fix me
         this.roundsAlive++;
 
         console.log("round finished");
@@ -59,7 +59,7 @@ class Game {
     }
 
     loadPathTiles() {
-        let jsonString = document.getElementById("pathTilesText").value;
+        let jsonString = $("#pathTilesText").val();
         let jsonArray = JSON.parse(this.jsonPath);
         for(let tile in jsonArray) {
             let t = new PathTile(jsonArray[tile].number, jsonArray[tile].x, jsonArray[tile].y, this.ctx);
@@ -68,7 +68,7 @@ class Game {
             this.pathTiles.push(t);
         }
         requestAnimationFrame(this.think.bind(this));
-        this.enemySpawner = setInterval(this.spawnEnemys.bind(this), 1000); 
+        this.enemySpawner = setInterval(this.spawnEnemys.bind(this), 1000); // TODO: fix me
       //  this.spawnEnemys();
     }
 
@@ -121,15 +121,15 @@ class Game {
             return;
         }
 
-        document.getElementById("fpsCounter").innerHTML = "Current FPS: " + Math.round(this.fps);
+        $("#fpsCounter").html("Current FPS: " + Math.round(this.fps));
 
 
-        document.getElementById("health").innerHTML = "Health: " + this.health;
-        document.getElementById("coins").innerHTML = "Money: " + this.coins;
+        $("#health").html("Health: " + this.health);
+        $("#coins").html("Money: " + this.coins);
 
-        document.getElementById("movementLayer").getContext("2d").clearRect(0,0,670, 670);
-        document.getElementById("bulletLayer").getContext("2d").clearRect(0,0,670, 670);
-        document.getElementById("towerLayer").getContext("2d").clearRect(0,0,670, 670);
+        $("#movementLayer")[0].getContext("2d").clearRect(0,0,670, 670);
+        $("#bulletLayer")[0].getContext("2d").clearRect(0,0,670, 670);
+        $("#towerLayer")[0].getContext("2d").clearRect(0,0,670, 670);
 
         for(let enemy in this.enemys) {
             this.enemys[enemy].move();

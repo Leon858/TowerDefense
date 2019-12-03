@@ -12,7 +12,7 @@ class Enemy {
         this.health = 3 * (game.roundsAlive == 0 ? 1 : game.roundsAlive);
         this.reward = 10;
 
-        this.ctx = document.getElementById("movementLayer").getContext("2d");
+        this.ctx = $("#movementLayer")[0].getContext("2d");
         this.dead = false;
 
         this.finishDamage = 3;
@@ -23,7 +23,7 @@ class Enemy {
         this.burnImage = new Image(),
         this.burnImage.src = "images/enemys/burning.png";
 
-        this.updatePos = setInterval(this.updatePos.bind(this), 500);
+        this.updatePos = setInterval(this.updatePos.bind(this), 500); // TODO: fix me
     }
 
     spawn() {

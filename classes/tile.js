@@ -17,7 +17,7 @@ class Tile {
         this.image = new Image();
         this.image.src = "images/grass_tile_" + Math.floor(Math.random() * 3) + ".png";
         this.onClickEvent = this.onClick.bind(this);
-        document.getElementById("bulletLayer").addEventListener("mousedown", this.onClickEvent);
+        $("#bulletLayer").mousedown(this.onClickEvent);
     }
 
     onClick(e) {
@@ -67,7 +67,7 @@ class Tile {
     }
 
     destroy() {
-        document.getElementById("bulletLayer").removeEventListener("mousedown", this.onClickEvent);
+        $("#bulletLayer").unbind("mousedown");
     }
 
     draw() {

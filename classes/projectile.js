@@ -1,6 +1,6 @@
 class Projectile {
     constructor(x, y, enemy, damage) {
-        this.ctx = document.getElementById("bulletLayer").getContext("2d");
+        this.ctx = $("#bulletLayer")[0].getContext("2d");
 
         this.enemy = enemy;
         this.destination = [this.enemy.x, this.enemy.y];
@@ -34,8 +34,8 @@ class Projectile {
 
         this.enemy.damage(this.damage);
         
-        document.getElementById("enemysLeft").innerHTML = "Enemys left: " + (game.enemysRound - game.enemysKilled);
-        document.getElementById("enemysKilled").innerHTML = "Enemys killed: " + game.enemysKilled;
+        $("#enemysLeft").html("Enemys left: " + (game.enemysRound - game.enemysKilled));
+        $("#enemysKilled").html("Enemys killed: " + game.enemysKilled);
     }
 
     gravity() {

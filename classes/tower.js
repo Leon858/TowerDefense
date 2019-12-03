@@ -4,7 +4,7 @@ class Tower {
         this.y = y;
         this.w = 40;
         this.h = 40;
-        this.ctx = document.getElementById("towerLayer").getContext("2d");
+        this.ctx = $("#towerLayer")[0].getContext("2d");
 
         this.costs = 75;
 
